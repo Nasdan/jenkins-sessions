@@ -7,7 +7,6 @@ pipeline {
 
   stages {
     stage("Build") {
-      agent any // Se puede usar otro agent como docker
       environment {
         LOG_LEVEL='INFO'
       }
