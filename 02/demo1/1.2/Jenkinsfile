@@ -1,0 +1,30 @@
+pipeline {
+  agent {
+    docker {
+      dir("02/solution")
+    }
+  }
+
+  stages {
+    stage('Verify') {
+      steps {
+        sh'''
+          node --version
+          npm --version
+        '''
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh'docker build -t my-image:0.0.1 .'
+      }
+    }
+
+    stage('Smoke test') {
+      steps {
+        sh'docker run my-image:0.0.1'
+      }
+    }
+  }
+}
