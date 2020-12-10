@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      dir("02/solution")
+      dir '02/solution'
     }
   }
 
