@@ -7,7 +7,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          image = docker.build('nasdan/my-image:0.0.1', '--pull -f 02/solution/Dockerfile 02/solution/ ')
+          image = docker.build('nasdan/demo-jenkins-pipeline-with-docker:0.0.1', '--pull -f 02/solution/Dockerfile 02/solution/ ')
         }
       }
     }
