@@ -24,7 +24,7 @@ pipeline {
 
     stage("Build") {
       environment {
-        VERSION_SUFFIX="${sh(script: 'if ["${RC}" == false] ; then echo -n "${VERSION_RC}+ci.${BUILD_NUMBER}"; else echo -n "${VERSION_RC}"; fi', returnStdout: true)}"
+        VERSION_SUFFIX="${sh(script: 'if ["${RC}" == 'false'] ; then echo -n "${VERSION_RC}+ci.${BUILD_NUMBER}"; else echo -n "${VERSION_RC}"; fi', returnStdout: true)}"
       }
       steps {
         dir('./01/solution'){
