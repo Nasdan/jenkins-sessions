@@ -1,0 +1,3 @@
+FROM node:alpine.3.12
+
+ENV LEMONCODE_VAR=lemon
