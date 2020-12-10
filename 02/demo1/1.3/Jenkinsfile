@@ -1,0 +1,34 @@
+def image
+
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          image = docker.build('nasdan/my-image:0.0.1', '--pull -f 02/solution/Dockerfile 02/solution/ ')
+        }
+      }
+    }
+
+    stage('Smoke test') {
+      steps {
+        script {
+          container = image.run()
+          container.stop()
+        }
+      }
+    }
+
+    stage('Publish') {
+      steps {
+        script {
+          withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+            image.push()
+          }
+        }
+      }
+    }
+  }
+}
